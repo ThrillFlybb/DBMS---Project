@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Query Log Viewer</h3>
+
+<form id="querySearchForm">
+	<input type="search" id="querySearch" placeholder="Search SQL..." />
+	<select id="pageSize">
+		<option value="10">10</option>
+		<option value="20" selected>20</option>
+		<option value="50">50</option>
+	</select>
+	<button type="submit" class="secondary">Apply</button>
+</form>
+
+<table>
+	<thead>
+		<tr>
+			<th>Timestamp</th>
+			<th>Latency (ms)</th>
+			<th>DB</th>
+			<th>SQL</th>
+		</tr>
+	</thead>
+	<tbody id="queriesTbody"></tbody>
+</table>
+
+<nav>
+	<ul id="pagination" class="pagination"></ul>
+</nav>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+	window.IndexUI.initQueries();
+});
+</script>
+{% endblock %}
+
+
+
+
+
+
+
+

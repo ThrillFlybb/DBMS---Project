@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Real-time Metrics Dashboard</h3>
+
+<div class="charts-grid">
+	<article>
+		<h4>QPS (Queries Per Second)</h4>
+		<canvas id="qpsChart"></canvas>
+	</article>
+	<article>
+		<h4>Latency (ms)</h4>
+		<canvas id="latencyChart"></canvas>
+	</article>
+	<article>
+		<h4>CPU (%)</h4>
+		<canvas id="cpuChart"></canvas>
+	</article>
+	<article>
+		<h4>Memory (%)</h4>
+		<canvas id="memoryChart"></canvas>
+	</article>
+	<article>
+		<h4>Storage (GB)</h4>
+		<canvas id="storageChart"></canvas>
+	</article>
+</div>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+	window.IndexUI.initDashboard();
+});
+</script>
+{% endblock %}
+

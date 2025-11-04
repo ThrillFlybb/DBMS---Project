@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Settings</h3>
+
+<form id="settingsForm">
+	<fieldset>
+		<legend>Database</legend>
+		<label>Host <input id="dbHost" value="{{ settings.db.host }}" /></label>
+		<label>Port <input id="dbPort" type="number" value="{{ settings.db.port }}" /></label>
+		<label>User <input id="dbUser" value="{{ settings.db.user }}" /></label>
+		<label>Database <input id="dbName" value="{{ settings.db.database }}" /></label>
+	</fieldset>
+	<fieldset>
+		<legend>Frontend</legend>
+		<label>Refresh Interval (ms) <input id="refreshInterval" type="number" value="{{ settings.refreshIntervalMs }}" /></label>
+		<label>Data Source
+			<select id="dataSource">
+				<option value="json" {% if settings.dataSource == 'json' %}selected{% endif %}>JSON</option>
+				<option value="rest" {% if settings.dataSource == 'rest' %}selected{% endif %}>REST</option>
+			</select>
+		</label>
+		<label>Backend Base URL (for REST)
+			<input id="backendBaseUrl" placeholder="http://localhost:9000/api" value="{{ settings.backendBaseUrl or '' }}" />
+		</label>
+	</fieldset>
+	<button type="submit" class="primary">Save</button>
+    <span id="settingsStatus"></span>
+	</form>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+	window.IndexUI.initSettings();
+});
+</script>
+{% endblock %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Settings</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <h1>⚙️ Database Connection Settings</h1>
+  <form id="settingsForm">
+    <label>Host:</label><input type="text" name="host" value="localhost"><br>
+    <label>Port:</label><input type="text" name="port" value="5432"><br>
+    <label>User:</label><input type="text" name="user" value="admin"><br>
+    <label>Password:</label><input type="password" name="password"><br>
+    <button type="submit">Save</button>
+  </form>
+</body>
+</html>

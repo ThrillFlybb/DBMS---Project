@@ -1,0 +1,1604 @@
+{
+  "items": [
+    {
+      "timestamp": "2025-11-04T12:09:39.568486+00:00",
+      "latencyMs": 32.16,
+      "database": "payments",
+      "sql": "SELECT * FROM audit_logs WHERE user_id BETWEEN 2307 AND 9042 LIMIT 46",
+      "type": "SELECT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:09:40.577048+00:00",
+      "latencyMs": 20.82,
+      "database": "app",
+      "sql": "DELETE FROM payments WHERE transaction_date = '2024-05-05'",
+      "type": "DELETE",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:09:41.585627+00:00",
+      "latencyMs": 28.29,
+      "database": "app",
+      "sql": "DELETE FROM orders WHERE status = 'pending'",
+      "type": "DELETE",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:09:42.595440+00:00",
+      "latencyMs": 29.42,
+      "database": "app",
+      "sql": "INSERT INTO orders (user_id, product_name, amount, status, order_date, quantity) VALUES (9421, 'Camera Basic', 1246.28, 'processing', '2023-05-09', 5)",
+      "type": "INSERT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:09:43.603887+00:00",
+      "latencyMs": 15.63,
+      "database": "app",
+      "sql": "UPDATE audit_logs SET table_name = 'orders' WHERE id = 53205",
+      "type": "UPDATE",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:09:44.613557+00:00",
+      "latencyMs": 25.2,
+      "database": "payments",
+      "sql": "INSERT INTO users (name, email, age, status, created_at, is_premium) VALUES ('Maria Maria', 'lisa953@outlook.com', 55, 'active', '2023-02-18', False)",
+      "type": "INSERT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:09:45.627843+00:00",
+      "latencyMs": 17.05,
+      "database": "payments",
+      "sql": "UPDATE users SET status = 'pending' WHERE status = 'suspended'",
+      "type": "UPDATE",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:09:46.636981+00:00",
+      "latencyMs": 6.51,
+      "database": "app",
+      "sql": "SELECT * FROM payments LIMIT 66",
+      "type": "SELECT",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:09:47.645450+00:00",
+      "latencyMs": 19.99,
+      "database": "payments",
+      "sql": "UPDATE payments SET status = 'pending' WHERE order_id = 38239",
+      "type": "UPDATE",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:09:48.654967+00:00",
+      "latencyMs": 19.03,
+      "database": "payments",
+      "sql": "SELECT COUNT(*) FROM users WHERE status = 'pending'",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:09:49.663647+00:00",
+      "latencyMs": 30.26,
+      "database": "app",
+      "sql": "SELECT o.*, u.name FROM orders o JOIN users u ON o.user_id = u.id LIMIT 26",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:09:50.675200+00:00",
+      "latencyMs": 26.49,
+      "database": "payments",
+      "sql": "INSERT INTO payments (order_id, amount, payment_method, status, transaction_date) VALUES (19979, 510.29, 'paypal', 'failed', '2023-05-22')",
+      "type": "INSERT",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:09:51.684920+00:00",
+      "latencyMs": 13.58,
+      "database": "analytics",
+      "sql": "SELECT COUNT(*) FROM payments WHERE payment_method = 'bank_transfer'",
+      "type": "SELECT",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:09:52.694307+00:00",
+      "latencyMs": 27.53,
+      "database": "analytics",
+      "sql": "INSERT INTO orders (user_id, product_name, amount, status, order_date, quantity) VALUES (305, 'Camera Standard', 1712.8, 'cancelled', '2023-10-04', 6)",
+      "type": "INSERT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:09:53.702785+00:00",
+      "latencyMs": 24.77,
+      "database": "analytics",
+      "sql": "SELECT * FROM audit_logs LIMIT 85",
+      "type": "SELECT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:09:54.712050+00:00",
+      "latencyMs": 19.04,
+      "database": "payments",
+      "sql": "SELECT * FROM orders WHERE user_id BETWEEN 4304 AND 5957 LIMIT 11",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:09:55.720754+00:00",
+      "latencyMs": 19.42,
+      "database": "analytics",
+      "sql": "SELECT * FROM orders LIMIT 39",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:09:56.731878+00:00",
+      "latencyMs": 27.89,
+      "database": "analytics",
+      "sql": "SELECT * FROM audit_logs LIMIT 96",
+      "type": "SELECT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:09:57.744117+00:00",
+      "latencyMs": 24.91,
+      "database": "analytics",
+      "sql": "SELECT * FROM orders WHERE product_name LIKE '%Book%' LIMIT 28",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:09:58.753230+00:00",
+      "latencyMs": 16.25,
+      "database": "payments",
+      "sql": "SELECT * FROM orders WHERE id BETWEEN 3779 AND 8113 LIMIT 26",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:09:59.761715+00:00",
+      "latencyMs": 28.16,
+      "database": "payments",
+      "sql": "SELECT * FROM users LIMIT 85",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:00.770557+00:00",
+      "latencyMs": 9.78,
+      "database": "payments",
+      "sql": "SELECT * FROM users WHERE age BETWEEN 57 AND 62 LIMIT 15",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:01.779292+00:00",
+      "latencyMs": 12.01,
+      "database": "app",
+      "sql": "SELECT * FROM orders ORDER BY order_date DESC LIMIT 26",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:02.789014+00:00",
+      "latencyMs": 14.21,
+      "database": "analytics",
+      "sql": "SELECT * FROM payments WHERE status = 'pending' LIMIT 10",
+      "type": "SELECT",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:03.798157+00:00",
+      "latencyMs": 15.88,
+      "database": "analytics",
+      "sql": "SELECT * FROM users ORDER BY created_at DESC LIMIT 40",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:04.807460+00:00",
+      "latencyMs": 15.5,
+      "database": "analytics",
+      "sql": "UPDATE payments SET payment_method = 'debit_card' WHERE payment_method = 'credit_card'",
+      "type": "UPDATE",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:05.816221+00:00",
+      "latencyMs": 20.35,
+      "database": "analytics",
+      "sql": "UPDATE orders SET product_name = 'Shoes Plus' WHERE status = 'pending'",
+      "type": "UPDATE",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:06.824842+00:00",
+      "latencyMs": 12.53,
+      "database": "analytics",
+      "sql": "SELECT * FROM users WHERE status = 'suspended' LIMIT 16",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:07.833438+00:00",
+      "latencyMs": 19.81,
+      "database": "payments",
+      "sql": "DELETE FROM payments WHERE payment_method = 'debit_card'",
+      "type": "DELETE",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:08.844807+00:00",
+      "latencyMs": 10.71,
+      "database": "app",
+      "sql": "SELECT COUNT(*) FROM users WHERE status = 'pending'",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:09.854490+00:00",
+      "latencyMs": 21.72,
+      "database": "app",
+      "sql": "SELECT * FROM orders ORDER BY order_date DESC LIMIT 25",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:10.863482+00:00",
+      "latencyMs": 21.73,
+      "database": "app",
+      "sql": "SELECT COUNT(*) FROM audit_logs WHERE table_name = 'payments'",
+      "type": "SELECT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:11.872705+00:00",
+      "latencyMs": 25.14,
+      "database": "analytics",
+      "sql": "SELECT * FROM users LIMIT 35",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:12.881956+00:00",
+      "latencyMs": 33.22,
+      "database": "payments",
+      "sql": "SELECT * FROM users WHERE name LIKE '%Sarah%' LIMIT 21",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:13.891558+00:00",
+      "latencyMs": 12.51,
+      "database": "analytics",
+      "sql": "SELECT * FROM orders ORDER BY order_date DESC LIMIT 16",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:14.900343+00:00",
+      "latencyMs": 10.49,
+      "database": "app",
+      "sql": "DELETE FROM orders WHERE status = 'processing'",
+      "type": "DELETE",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:15.909198+00:00",
+      "latencyMs": 27.25,
+      "database": "payments",
+      "sql": "UPDATE payments SET status = 'failed' WHERE order_id = 19824",
+      "type": "UPDATE",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:16.920273+00:00",
+      "latencyMs": 16.12,
+      "database": "app",
+      "sql": "SELECT * FROM users LIMIT 23",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:17.932235+00:00",
+      "latencyMs": 25.72,
+      "database": "analytics",
+      "sql": "SELECT COUNT(*) FROM audit_logs WHERE table_name = 'audit_logs'",
+      "type": "SELECT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:18.941279+00:00",
+      "latencyMs": 23.21,
+      "database": "payments",
+      "sql": "SELECT * FROM orders ORDER BY order_date DESC LIMIT 21",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:19.949944+00:00",
+      "latencyMs": 21.16,
+      "database": "payments",
+      "sql": "SELECT COUNT(*) FROM users WHERE status = 'inactive'",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:20.958989+00:00",
+      "latencyMs": 30.65,
+      "database": "analytics",
+      "sql": "SELECT * FROM orders LIMIT 75",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:21.968614+00:00",
+      "latencyMs": 10.17,
+      "database": "analytics",
+      "sql": "SELECT * FROM users LIMIT 69",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:22.982376+00:00",
+      "latencyMs": 20.07,
+      "database": "analytics",
+      "sql": "INSERT INTO users (name, email, age, status, created_at, is_premium) VALUES ('Sarah John', 'tom677@outlook.com', 47, 'inactive', '2020-04-25', True)",
+      "type": "INSERT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:23.992072+00:00",
+      "latencyMs": 23.83,
+      "database": "payments",
+      "sql": "SELECT * FROM users ORDER BY created_at DESC LIMIT 13",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:25.000707+00:00",
+      "latencyMs": 19.83,
+      "database": "analytics",
+      "sql": "SELECT * FROM orders LIMIT 32",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:26.009871+00:00",
+      "latencyMs": 33.62,
+      "database": "app",
+      "sql": "SELECT * FROM orders ORDER BY order_date DESC LIMIT 7",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:27.018278+00:00",
+      "latencyMs": 23.24,
+      "database": "app",
+      "sql": "SELECT * FROM users LIMIT 98",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:28.026718+00:00",
+      "latencyMs": 22.14,
+      "database": "analytics",
+      "sql": "SELECT COUNT(*) FROM payments WHERE payment_method = 'debit_card'",
+      "type": "SELECT",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:29.035851+00:00",
+      "latencyMs": 28.41,
+      "database": "payments",
+      "sql": "UPDATE audit_logs SET user_id = 7678 WHERE user_id = 9480",
+      "type": "UPDATE",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:30.044911+00:00",
+      "latencyMs": 14.23,
+      "database": "payments",
+      "sql": "UPDATE orders SET quantity = 1 WHERE status = 'cancelled'",
+      "type": "UPDATE",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:31.055466+00:00",
+      "latencyMs": 13.05,
+      "database": "analytics",
+      "sql": "INSERT INTO audit_logs (user_id, action, table_name, created_at, ip_address) VALUES (7891, 'create', 'orders', '2024-04-14', '244.83.163.197')",
+      "type": "INSERT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:32.065173+00:00",
+      "latencyMs": 20.87,
+      "database": "app",
+      "sql": "UPDATE payments SET amount = 978.58 WHERE status = 'failed'",
+      "type": "UPDATE",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:33.075713+00:00",
+      "latencyMs": 16.94,
+      "database": "analytics",
+      "sql": "SELECT COUNT(*) FROM payments WHERE status = 'refunded'",
+      "type": "SELECT",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:34.084787+00:00",
+      "latencyMs": 10.27,
+      "database": "payments",
+      "sql": "UPDATE users SET name = 'David Kate' WHERE age = 38",
+      "type": "UPDATE",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:35.094427+00:00",
+      "latencyMs": 18.15,
+      "database": "analytics",
+      "sql": "SELECT * FROM payments ORDER BY transaction_date DESC LIMIT 37",
+      "type": "SELECT",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:36.104235+00:00",
+      "latencyMs": 19.35,
+      "database": "app",
+      "sql": "INSERT INTO users (name, email, age, status, created_at, is_premium) VALUES ('Lisa Kate', 'chris599@gmail.com', 37, 'pending', '2020-01-23', False)",
+      "type": "INSERT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:37.113284+00:00",
+      "latencyMs": 18.7,
+      "database": "app",
+      "sql": "UPDATE orders SET user_id = 1826 WHERE quantity = 2",
+      "type": "UPDATE",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:38.124215+00:00",
+      "latencyMs": 13.8,
+      "database": "analytics",
+      "sql": "INSERT INTO audit_logs (user_id, action, table_name, created_at, ip_address) VALUES (6072, 'login', 'users', '2023-01-10', '224.71.234.84')",
+      "type": "INSERT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:39.157456+00:00",
+      "latencyMs": 13.03,
+      "database": "payments",
+      "sql": "SELECT * FROM payments ORDER BY transaction_date DESC LIMIT 30",
+      "type": "SELECT",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:40.167404+00:00",
+      "latencyMs": 16.8,
+      "database": "app",
+      "sql": "SELECT * FROM audit_logs WHERE action = 'update' LIMIT 39",
+      "type": "SELECT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:41.180494+00:00",
+      "latencyMs": 33.32,
+      "database": "analytics",
+      "sql": "SELECT * FROM payments WHERE order_id BETWEEN 13165 AND 20797 LIMIT 12",
+      "type": "SELECT",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:42.192064+00:00",
+      "latencyMs": 24.7,
+      "database": "analytics",
+      "sql": "UPDATE orders SET quantity = 6 WHERE status = 'cancelled'",
+      "type": "UPDATE",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:43.204534+00:00",
+      "latencyMs": 27.54,
+      "database": "payments",
+      "sql": "SELECT * FROM orders ORDER BY order_date DESC LIMIT 28",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:44.216286+00:00",
+      "latencyMs": 13.49,
+      "database": "app",
+      "sql": "UPDATE orders SET product_name = 'Shirt Max' WHERE user_id = 5634",
+      "type": "UPDATE",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:45.226971+00:00",
+      "latencyMs": 28.73,
+      "database": "payments",
+      "sql": "SELECT * FROM audit_logs LIMIT 59",
+      "type": "SELECT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:46.237681+00:00",
+      "latencyMs": 18.07,
+      "database": "analytics",
+      "sql": "UPDATE orders SET order_date = '2024-09-30' WHERE user_id = 7872",
+      "type": "UPDATE",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:47.248665+00:00",
+      "latencyMs": 27.16,
+      "database": "payments",
+      "sql": "SELECT * FROM orders ORDER BY order_date DESC LIMIT 44",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:48.258923+00:00",
+      "latencyMs": 20.98,
+      "database": "analytics",
+      "sql": "SELECT * FROM payments LIMIT 47",
+      "type": "SELECT",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:49.269071+00:00",
+      "latencyMs": 18.04,
+      "database": "app",
+      "sql": "SELECT o.*, u.name FROM orders o JOIN users u ON o.user_id = u.id LIMIT 23",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:50.278022+00:00",
+      "latencyMs": 27.01,
+      "database": "payments",
+      "sql": "SELECT * FROM audit_logs LIMIT 15",
+      "type": "SELECT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:51.287717+00:00",
+      "latencyMs": 18.44,
+      "database": "analytics",
+      "sql": "INSERT INTO orders (user_id, product_name, amount, status, order_date, quantity) VALUES (2727, 'Shirt Max', 1732.46, 'pending', '2023-07-31', 3)",
+      "type": "INSERT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:52.296295+00:00",
+      "latencyMs": 14.45,
+      "database": "payments",
+      "sql": "SELECT * FROM users WHERE status = 'active' LIMIT 48",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:53.305295+00:00",
+      "latencyMs": 24.51,
+      "database": "app",
+      "sql": "SELECT * FROM payments WHERE id BETWEEN 2812 AND 46894 LIMIT 37",
+      "type": "SELECT",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:54.313905+00:00",
+      "latencyMs": 39.26,
+      "database": "payments",
+      "sql": "SELECT COUNT(*) FROM orders WHERE status = 'pending'",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:55.329954+00:00",
+      "latencyMs": 17.34,
+      "database": "app",
+      "sql": "UPDATE audit_logs SET table_name = 'orders' WHERE user_id = 4820",
+      "type": "UPDATE",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:56.340898+00:00",
+      "latencyMs": 16.08,
+      "database": "analytics",
+      "sql": "SELECT * FROM payments LIMIT 82",
+      "type": "SELECT",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:57.351265+00:00",
+      "latencyMs": 13.12,
+      "database": "payments",
+      "sql": "INSERT INTO audit_logs (user_id, action, table_name, created_at, ip_address) VALUES (1135, 'view', 'orders', '2024-06-24', '151.237.233.51')",
+      "type": "INSERT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:58.360704+00:00",
+      "latencyMs": 13.94,
+      "database": "payments",
+      "sql": "SELECT * FROM users LIMIT 34",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:10:59.372209+00:00",
+      "latencyMs": 23.76,
+      "database": "analytics",
+      "sql": "UPDATE payments SET amount = 486.52 WHERE payment_method = 'debit_card'",
+      "type": "UPDATE",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:00.380816+00:00",
+      "latencyMs": 21.39,
+      "database": "payments",
+      "sql": "UPDATE users SET name = 'David Maria' WHERE id = 5468",
+      "type": "UPDATE",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:01.390327+00:00",
+      "latencyMs": 18.98,
+      "database": "app",
+      "sql": "INSERT INTO users (name, email, age, status, created_at, is_premium) VALUES ('Chris James', 'mike573@gmail.com', 29, 'suspended', '2021-02-16', True)",
+      "type": "INSERT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:02.400732+00:00",
+      "latencyMs": 18.43,
+      "database": "analytics",
+      "sql": "SELECT * FROM users LIMIT 69",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:03.410412+00:00",
+      "latencyMs": 11.92,
+      "database": "analytics",
+      "sql": "SELECT p.*, o.product_name FROM payments p JOIN orders o ON p.order_id = o.id LIMIT 20",
+      "type": "SELECT",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:04.420865+00:00",
+      "latencyMs": 22.39,
+      "database": "payments",
+      "sql": "SELECT * FROM audit_logs LIMIT 37",
+      "type": "SELECT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:05.430620+00:00",
+      "latencyMs": 19.32,
+      "database": "app",
+      "sql": "DELETE FROM audit_logs WHERE created_at = '2023-08-08'",
+      "type": "DELETE",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:06.439860+00:00",
+      "latencyMs": 13.27,
+      "database": "analytics",
+      "sql": "SELECT * FROM orders WHERE status = 'cancelled' LIMIT 34",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:07.449884+00:00",
+      "latencyMs": 14.05,
+      "database": "app",
+      "sql": "INSERT INTO users (name, email, age, status, created_at, is_premium) VALUES ('Emma Alex', 'sophie557@company.com', 39, 'active', '2024-02-24', False)",
+      "type": "INSERT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:08.459011+00:00",
+      "latencyMs": 19.83,
+      "database": "payments",
+      "sql": "SELECT * FROM orders LIMIT 82",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:09.468212+00:00",
+      "latencyMs": 15.18,
+      "database": "analytics",
+      "sql": "SELECT * FROM audit_logs WHERE table_name = 'orders' LIMIT 15",
+      "type": "SELECT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:10.477733+00:00",
+      "latencyMs": 22.37,
+      "database": "analytics",
+      "sql": "UPDATE users SET is_premium = False WHERE status = 'active'",
+      "type": "UPDATE",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:11.488106+00:00",
+      "latencyMs": 27.21,
+      "database": "payments",
+      "sql": "SELECT * FROM payments WHERE id BETWEEN 54138 AND 55756 LIMIT 24",
+      "type": "SELECT",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:12.498327+00:00",
+      "latencyMs": 25.75,
+      "database": "app",
+      "sql": "SELECT * FROM users WHERE status = 'pending' LIMIT 25",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:13.508064+00:00",
+      "latencyMs": 22.2,
+      "database": "payments",
+      "sql": "INSERT INTO audit_logs (user_id, action, table_name, created_at, ip_address) VALUES (7981, 'logout', 'orders', '2023-02-28', '104.136.124.181')",
+      "type": "INSERT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:14.519844+00:00",
+      "latencyMs": 12.11,
+      "database": "app",
+      "sql": "UPDATE payments SET payment_method = 'bank_transfer' WHERE id = 54089",
+      "type": "UPDATE",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:15.530216+00:00",
+      "latencyMs": 18.89,
+      "database": "analytics",
+      "sql": "SELECT * FROM audit_logs LIMIT 43",
+      "type": "SELECT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:16.538809+00:00",
+      "latencyMs": 18.67,
+      "database": "app",
+      "sql": "SELECT * FROM payments LIMIT 68",
+      "type": "SELECT",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:17.547725+00:00",
+      "latencyMs": 27.25,
+      "database": "analytics",
+      "sql": "INSERT INTO audit_logs (user_id, action, table_name, created_at, ip_address) VALUES (5050, 'view', 'users', '2024-10-13', '241.42.62.133')",
+      "type": "INSERT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:18.556515+00:00",
+      "latencyMs": 29.95,
+      "database": "app",
+      "sql": "DELETE FROM orders WHERE quantity = 3",
+      "type": "DELETE",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:19.566769+00:00",
+      "latencyMs": 14.13,
+      "database": "app",
+      "sql": "SELECT * FROM audit_logs WHERE action = 'create' LIMIT 44",
+      "type": "SELECT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:20.575627+00:00",
+      "latencyMs": 13.03,
+      "database": "payments",
+      "sql": "INSERT INTO users (name, email, age, status, created_at, is_premium) VALUES ('Lisa Kate', 'maria841@gmail.com', 39, 'suspended', '2020-11-22', False)",
+      "type": "INSERT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:21.585930+00:00",
+      "latencyMs": 30.58,
+      "database": "payments",
+      "sql": "SELECT * FROM users WHERE status = 'pending' LIMIT 38",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:22.596869+00:00",
+      "latencyMs": 15.18,
+      "database": "app",
+      "sql": "UPDATE audit_logs SET created_at = '2023-01-03' WHERE table_name = 'orders'",
+      "type": "UPDATE",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:23.606276+00:00",
+      "latencyMs": 23.96,
+      "database": "payments",
+      "sql": "SELECT COUNT(*) FROM orders WHERE status = 'cancelled'",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:24.618010+00:00",
+      "latencyMs": 25.91,
+      "database": "payments",
+      "sql": "INSERT INTO users (name, email, age, status, created_at, is_premium) VALUES ('Tom David', 'john358@hotmail.com', 71, 'active', '2020-05-26', True)",
+      "type": "INSERT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:25.629811+00:00",
+      "latencyMs": 39.4,
+      "database": "app",
+      "sql": "INSERT INTO orders (user_id, product_name, amount, status, order_date, quantity) VALUES (3343, 'Charger Standard', 1165.18, 'pending', '2023-06-19', 2)",
+      "type": "INSERT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:26.638077+00:00",
+      "latencyMs": 14.54,
+      "database": "analytics",
+      "sql": "SELECT * FROM users WHERE age BETWEEN 18 AND 22 LIMIT 8",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:27.647213+00:00",
+      "latencyMs": 10.56,
+      "database": "app",
+      "sql": "DELETE FROM users WHERE created_at = '2021-09-29'",
+      "type": "DELETE",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:28.656887+00:00",
+      "latencyMs": 23.58,
+      "database": "app",
+      "sql": "INSERT INTO users (name, email, age, status, created_at, is_premium) VALUES ('Anna Tom', 'sarah380@company.com', 29, 'pending', '2023-02-01', False)",
+      "type": "INSERT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:29.666040+00:00",
+      "latencyMs": 10.53,
+      "database": "payments",
+      "sql": "SELECT * FROM orders WHERE product_name LIKE '%Watch%' LIMIT 23",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:30.677330+00:00",
+      "latencyMs": 14.55,
+      "database": "analytics",
+      "sql": "SELECT * FROM users WHERE name LIKE '%Emma%' LIMIT 31",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:31.686744+00:00",
+      "latencyMs": 26.6,
+      "database": "payments",
+      "sql": "SELECT * FROM audit_logs LIMIT 55",
+      "type": "SELECT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:32.696544+00:00",
+      "latencyMs": 23.1,
+      "database": "payments",
+      "sql": "SELECT * FROM orders WHERE amount BETWEEN 1006.86 AND 1802.97 LIMIT 47",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:33.707918+00:00",
+      "latencyMs": 32.66,
+      "database": "payments",
+      "sql": "SELECT * FROM users LIMIT 37",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:34.719361+00:00",
+      "latencyMs": 12.84,
+      "database": "payments",
+      "sql": "INSERT INTO payments (order_id, amount, payment_method, status, transaction_date) VALUES (45923, 439.55, 'paypal', 'failed', '2024-10-11')",
+      "type": "INSERT",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:35.728691+00:00",
+      "latencyMs": 23.09,
+      "database": "analytics",
+      "sql": "INSERT INTO users (name, email, age, status, created_at, is_premium) VALUES ('Ryan Sophie', 'kate539@hotmail.com', 32, 'pending', '2020-11-13', False)",
+      "type": "INSERT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:36.741286+00:00",
+      "latencyMs": 20.3,
+      "database": "analytics",
+      "sql": "SELECT * FROM payments WHERE payment_method = 'paypal' LIMIT 17",
+      "type": "SELECT",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:37.753123+00:00",
+      "latencyMs": 22.23,
+      "database": "analytics",
+      "sql": "UPDATE users SET is_premium = False WHERE status = 'suspended'",
+      "type": "UPDATE",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:38.766243+00:00",
+      "latencyMs": 15.21,
+      "database": "analytics",
+      "sql": "SELECT * FROM users LIMIT 71",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:39.775475+00:00",
+      "latencyMs": 14.75,
+      "database": "app",
+      "sql": "INSERT INTO payments (order_id, amount, payment_method, status, transaction_date) VALUES (6343, 1057.51, 'debit_card', 'pending', '2024-05-02')",
+      "type": "INSERT",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:40.785082+00:00",
+      "latencyMs": 16.18,
+      "database": "analytics",
+      "sql": "SELECT * FROM users ORDER BY created_at DESC LIMIT 37",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:41.799103+00:00",
+      "latencyMs": 17.4,
+      "database": "app",
+      "sql": "UPDATE users SET age = 75 WHERE age = 46",
+      "type": "UPDATE",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:42.809412+00:00",
+      "latencyMs": 26.82,
+      "database": "payments",
+      "sql": "SELECT * FROM payments WHERE status = 'refunded' LIMIT 36",
+      "type": "SELECT",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:43.818749+00:00",
+      "latencyMs": 20.32,
+      "database": "app",
+      "sql": "SELECT * FROM orders ORDER BY order_date DESC LIMIT 9",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:44.828257+00:00",
+      "latencyMs": 9.48,
+      "database": "payments",
+      "sql": "SELECT * FROM users WHERE status = 'active' LIMIT 19",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:45.836938+00:00",
+      "latencyMs": 14.3,
+      "database": "analytics",
+      "sql": "SELECT COUNT(*) FROM audit_logs WHERE table_name = 'audit_logs'",
+      "type": "SELECT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:46.845985+00:00",
+      "latencyMs": 21.54,
+      "database": "app",
+      "sql": "SELECT * FROM orders WHERE status = 'cancelled' LIMIT 18",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:47.855036+00:00",
+      "latencyMs": 15.02,
+      "database": "app",
+      "sql": "SELECT * FROM users LIMIT 46",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:48.864934+00:00",
+      "latencyMs": 19.16,
+      "database": "app",
+      "sql": "INSERT INTO users (name, email, age, status, created_at, is_premium) VALUES ('Jane Tom', 'emma971@example.org', 59, 'inactive', '2021-06-27', False)",
+      "type": "INSERT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:49.875978+00:00",
+      "latencyMs": 14.08,
+      "database": "payments",
+      "sql": "INSERT INTO orders (user_id, product_name, amount, status, order_date, quantity) VALUES (8528, 'Book Plus', 1493.03, 'pending', '2023-02-04', 10)",
+      "type": "INSERT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:50.888734+00:00",
+      "latencyMs": 20.03,
+      "database": "app",
+      "sql": "SELECT * FROM orders LIMIT 56",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:51.897873+00:00",
+      "latencyMs": 20.4,
+      "database": "analytics",
+      "sql": "SELECT COUNT(*) FROM orders WHERE status = 'pending'",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:52.906782+00:00",
+      "latencyMs": 27.01,
+      "database": "analytics",
+      "sql": "SELECT p.*, o.product_name FROM payments p JOIN orders o ON p.order_id = o.id LIMIT 6",
+      "type": "SELECT",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:53.915803+00:00",
+      "latencyMs": 21.03,
+      "database": "analytics",
+      "sql": "UPDATE orders SET order_date = '2024-09-15' WHERE id = 5449",
+      "type": "UPDATE",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:54.927956+00:00",
+      "latencyMs": 17.32,
+      "database": "app",
+      "sql": "SELECT p.*, o.product_name FROM payments p JOIN orders o ON p.order_id = o.id LIMIT 11",
+      "type": "SELECT",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:55.936523+00:00",
+      "latencyMs": 16.99,
+      "database": "analytics",
+      "sql": "SELECT * FROM audit_logs WHERE id BETWEEN 46051 AND 61914 LIMIT 42",
+      "type": "SELECT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:56.945495+00:00",
+      "latencyMs": 16.19,
+      "database": "analytics",
+      "sql": "DELETE FROM users WHERE id = 9076",
+      "type": "DELETE",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:57.954292+00:00",
+      "latencyMs": 12.76,
+      "database": "analytics",
+      "sql": "UPDATE payments SET payment_method = 'credit_card' WHERE id = 23315",
+      "type": "UPDATE",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:58.965189+00:00",
+      "latencyMs": 17.33,
+      "database": "app",
+      "sql": "SELECT * FROM users LIMIT 59",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:11:59.974242+00:00",
+      "latencyMs": 21.08,
+      "database": "app",
+      "sql": "UPDATE audit_logs SET created_at = '2023-12-12' WHERE user_id = 7542",
+      "type": "UPDATE",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:00.982960+00:00",
+      "latencyMs": 16.75,
+      "database": "app",
+      "sql": "SELECT COUNT(*) FROM audit_logs WHERE action = 'login'",
+      "type": "SELECT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:01.992021+00:00",
+      "latencyMs": 9.21,
+      "database": "payments",
+      "sql": "INSERT INTO audit_logs (user_id, action, table_name, created_at, ip_address) VALUES (9397, 'view', 'audit_logs', '2024-12-04', '44.211.233.110')",
+      "type": "INSERT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:03.001996+00:00",
+      "latencyMs": 23.09,
+      "database": "payments",
+      "sql": "SELECT * FROM orders WHERE status = 'processing' LIMIT 16",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:04.011899+00:00",
+      "latencyMs": 27.54,
+      "database": "app",
+      "sql": "SELECT * FROM payments WHERE order_id BETWEEN 28013 AND 43669 LIMIT 20",
+      "type": "SELECT",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:05.020496+00:00",
+      "latencyMs": 20.12,
+      "database": "payments",
+      "sql": "DELETE FROM orders WHERE id = 18785",
+      "type": "DELETE",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:06.029177+00:00",
+      "latencyMs": 25.86,
+      "database": "analytics",
+      "sql": "SELECT o.*, u.name FROM orders o JOIN users u ON o.user_id = u.id LIMIT 15",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:07.038384+00:00",
+      "latencyMs": 20.52,
+      "database": "payments",
+      "sql": "DELETE FROM payments WHERE payment_method = 'bank_transfer'",
+      "type": "DELETE",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:08.048117+00:00",
+      "latencyMs": 20.86,
+      "database": "app",
+      "sql": "DELETE FROM users WHERE age = 76",
+      "type": "DELETE",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:09.057361+00:00",
+      "latencyMs": 16.0,
+      "database": "analytics",
+      "sql": "INSERT INTO orders (user_id, product_name, amount, status, order_date, quantity) VALUES (9210, 'Tablet Basic', 23.36, 'shipped', '2023-06-29', 2)",
+      "type": "INSERT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:10.067473+00:00",
+      "latencyMs": 19.25,
+      "database": "analytics",
+      "sql": "SELECT * FROM payments LIMIT 71",
+      "type": "SELECT",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:11.075921+00:00",
+      "latencyMs": 15.74,
+      "database": "app",
+      "sql": "DELETE FROM orders WHERE quantity = 2",
+      "type": "DELETE",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:12.086922+00:00",
+      "latencyMs": 27.28,
+      "database": "app",
+      "sql": "SELECT * FROM users WHERE name LIKE '%Jane%' LIMIT 48",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:13.099245+00:00",
+      "latencyMs": 17.74,
+      "database": "app",
+      "sql": "SELECT * FROM audit_logs LIMIT 76",
+      "type": "SELECT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:14.109028+00:00",
+      "latencyMs": 23.19,
+      "database": "app",
+      "sql": "UPDATE orders SET user_id = 1222 WHERE id = 46711",
+      "type": "UPDATE",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:15.117774+00:00",
+      "latencyMs": 32.6,
+      "database": "payments",
+      "sql": "UPDATE audit_logs SET created_at = '2024-03-02' WHERE table_name = 'payments'",
+      "type": "UPDATE",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:16.127119+00:00",
+      "latencyMs": 17.63,
+      "database": "app",
+      "sql": "UPDATE audit_logs SET user_id = 1467 WHERE action = 'update'",
+      "type": "UPDATE",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:17.136590+00:00",
+      "latencyMs": 17.11,
+      "database": "payments",
+      "sql": "SELECT * FROM audit_logs LIMIT 52",
+      "type": "SELECT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:18.153460+00:00",
+      "latencyMs": 22.44,
+      "database": "payments",
+      "sql": "DELETE FROM payments WHERE transaction_date = '2024-06-30'",
+      "type": "DELETE",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:19.163942+00:00",
+      "latencyMs": 19.23,
+      "database": "analytics",
+      "sql": "SELECT COUNT(*) FROM orders WHERE status = 'delivered'",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:20.174738+00:00",
+      "latencyMs": 16.66,
+      "database": "payments",
+      "sql": "SELECT COUNT(*) FROM orders WHERE status = 'processing'",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:21.183595+00:00",
+      "latencyMs": 33.63,
+      "database": "analytics",
+      "sql": "SELECT * FROM payments LIMIT 86",
+      "type": "SELECT",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:22.193082+00:00",
+      "latencyMs": 18.9,
+      "database": "analytics",
+      "sql": "UPDATE payments SET transaction_date = '2024-05-30' WHERE id = 69574",
+      "type": "UPDATE",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:23.202006+00:00",
+      "latencyMs": 26.32,
+      "database": "app",
+      "sql": "SELECT * FROM audit_logs LIMIT 75",
+      "type": "SELECT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:24.210550+00:00",
+      "latencyMs": 23.04,
+      "database": "app",
+      "sql": "DELETE FROM audit_logs WHERE table_name = 'orders'",
+      "type": "DELETE",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:25.220338+00:00",
+      "latencyMs": 22.34,
+      "database": "app",
+      "sql": "UPDATE orders SET amount = 911.38 WHERE user_id = 6072",
+      "type": "UPDATE",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:26.230421+00:00",
+      "latencyMs": 10.94,
+      "database": "payments",
+      "sql": "UPDATE payments SET transaction_date = '2024-07-18' WHERE order_id = 41192",
+      "type": "UPDATE",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:27.244042+00:00",
+      "latencyMs": 23.97,
+      "database": "payments",
+      "sql": "INSERT INTO audit_logs (user_id, action, table_name, created_at, ip_address) VALUES (9460, 'create', 'users', '2024-07-24', '244.48.197.147')",
+      "type": "INSERT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:28.253425+00:00",
+      "latencyMs": 22.28,
+      "database": "analytics",
+      "sql": "SELECT * FROM users WHERE status = 'active' LIMIT 26",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:29.261781+00:00",
+      "latencyMs": 12.65,
+      "database": "app",
+      "sql": "SELECT p.*, o.product_name FROM payments p JOIN orders o ON p.order_id = o.id LIMIT 15",
+      "type": "SELECT",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:30.270110+00:00",
+      "latencyMs": 18.24,
+      "database": "analytics",
+      "sql": "SELECT * FROM users LIMIT 20",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:31.280509+00:00",
+      "latencyMs": 26.08,
+      "database": "app",
+      "sql": "UPDATE orders SET user_id = 6278 WHERE quantity = 2",
+      "type": "UPDATE",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:32.291405+00:00",
+      "latencyMs": 13.97,
+      "database": "analytics",
+      "sql": "UPDATE payments SET order_id = 20652 WHERE id = 894",
+      "type": "UPDATE",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:33.299829+00:00",
+      "latencyMs": 26.66,
+      "database": "payments",
+      "sql": "UPDATE users SET age = 34 WHERE status = 'active'",
+      "type": "UPDATE",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:34.312424+00:00",
+      "latencyMs": 25.77,
+      "database": "analytics",
+      "sql": "UPDATE audit_logs SET user_id = 9986 WHERE table_name = 'payments'",
+      "type": "UPDATE",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:35.322420+00:00",
+      "latencyMs": 19.14,
+      "database": "payments",
+      "sql": "SELECT COUNT(*) FROM payments WHERE status = 'pending'",
+      "type": "SELECT",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:36.332544+00:00",
+      "latencyMs": 10.19,
+      "database": "payments",
+      "sql": "INSERT INTO orders (user_id, product_name, amount, status, order_date, quantity) VALUES (4650, 'Mouse Plus', 452.23, 'shipped', '2024-04-14', 2)",
+      "type": "INSERT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:37.342308+00:00",
+      "latencyMs": 10.0,
+      "database": "app",
+      "sql": "SELECT o.*, u.name FROM orders o JOIN users u ON o.user_id = u.id LIMIT 8",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:38.351285+00:00",
+      "latencyMs": 8.04,
+      "database": "payments",
+      "sql": "SELECT * FROM users WHERE name LIKE '%James%' LIMIT 27",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:39.360540+00:00",
+      "latencyMs": 20.13,
+      "database": "app",
+      "sql": "INSERT INTO users (name, email, age, status, created_at, is_premium) VALUES ('Sophie Jane', 'ryan697@outlook.com', 31, 'pending', '2022-01-26', False)",
+      "type": "INSERT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:40.369390+00:00",
+      "latencyMs": 21.22,
+      "database": "app",
+      "sql": "SELECT o.*, u.name FROM orders o JOIN users u ON o.user_id = u.id LIMIT 8",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:41.377776+00:00",
+      "latencyMs": 14.83,
+      "database": "payments",
+      "sql": "INSERT INTO audit_logs (user_id, action, table_name, created_at, ip_address) VALUES (2702, 'delete', 'users', '2024-02-16', '104.202.21.62')",
+      "type": "INSERT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:42.386051+00:00",
+      "latencyMs": 24.48,
+      "database": "analytics",
+      "sql": "SELECT * FROM audit_logs ORDER BY created_at DESC LIMIT 48",
+      "type": "SELECT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:43.396393+00:00",
+      "latencyMs": 15.66,
+      "database": "payments",
+      "sql": "INSERT INTO orders (user_id, product_name, amount, status, order_date, quantity) VALUES (1262, 'Bag Standard', 1893.15, 'cancelled', '2023-07-08', 5)",
+      "type": "INSERT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:44.406379+00:00",
+      "latencyMs": 17.79,
+      "database": "analytics",
+      "sql": "SELECT * FROM payments LIMIT 93",
+      "type": "SELECT",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:45.415709+00:00",
+      "latencyMs": 22.94,
+      "database": "payments",
+      "sql": "SELECT * FROM audit_logs LIMIT 33",
+      "type": "SELECT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:46.424881+00:00",
+      "latencyMs": 14.81,
+      "database": "app",
+      "sql": "SELECT * FROM audit_logs LIMIT 29",
+      "type": "SELECT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:47.434057+00:00",
+      "latencyMs": 25.73,
+      "database": "payments",
+      "sql": "SELECT * FROM users WHERE id BETWEEN 4165 AND 8536 LIMIT 25",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:48.442754+00:00",
+      "latencyMs": 17.93,
+      "database": "app",
+      "sql": "SELECT * FROM orders WHERE product_name LIKE '%Bag%' LIMIT 28",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:49.451612+00:00",
+      "latencyMs": 15.61,
+      "database": "payments",
+      "sql": "SELECT * FROM audit_logs LIMIT 98",
+      "type": "SELECT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:50.460851+00:00",
+      "latencyMs": 14.92,
+      "database": "analytics",
+      "sql": "UPDATE payments SET order_id = 47910 WHERE id = 5336",
+      "type": "UPDATE",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:51.471429+00:00",
+      "latencyMs": 21.76,
+      "database": "payments",
+      "sql": "UPDATE payments SET transaction_date = '2023-06-24' WHERE payment_method = 'credit_card'",
+      "type": "UPDATE",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:52.480306+00:00",
+      "latencyMs": 14.99,
+      "database": "app",
+      "sql": "SELECT * FROM users WHERE name LIKE '%Sarah%' LIMIT 46",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:53.491953+00:00",
+      "latencyMs": 13.78,
+      "database": "analytics",
+      "sql": "SELECT * FROM payments WHERE order_id BETWEEN 9365 AND 41349 LIMIT 17",
+      "type": "SELECT",
+      "table": "payments"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:54.501640+00:00",
+      "latencyMs": 16.69,
+      "database": "payments",
+      "sql": "SELECT * FROM audit_logs ORDER BY created_at DESC LIMIT 12",
+      "type": "SELECT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:55.509684+00:00",
+      "latencyMs": 19.1,
+      "database": "payments",
+      "sql": "SELECT COUNT(*) FROM users WHERE status = 'inactive'",
+      "type": "SELECT",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:56.518913+00:00",
+      "latencyMs": 10.68,
+      "database": "payments",
+      "sql": "SELECT * FROM orders ORDER BY order_date DESC LIMIT 50",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:57.527766+00:00",
+      "latencyMs": 7.0,
+      "database": "payments",
+      "sql": "SELECT o.*, u.name FROM orders o JOIN users u ON o.user_id = u.id LIMIT 25",
+      "type": "SELECT",
+      "table": "orders"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:58.537175+00:00",
+      "latencyMs": 11.3,
+      "database": "analytics",
+      "sql": "INSERT INTO audit_logs (user_id, action, table_name, created_at, ip_address) VALUES (3698, 'login', 'audit_logs', '2023-12-15', '238.118.216.212')",
+      "type": "INSERT",
+      "table": "audit_logs"
+    },
+    {
+      "timestamp": "2025-11-04T12:12:59.545876+00:00",
+      "latencyMs": 19.07,
+      "database": "payments",
+      "sql": "DELETE FROM users WHERE status = 'pending'",
+      "type": "DELETE",
+      "table": "users"
+    },
+    {
+      "timestamp": "2025-11-04T12:13:00.555268+00:00",
+      "latencyMs": 23.4,
+      "database": "payments",
+      "sql": "UPDATE audit_logs SET ip_address = '210.30.17.254' WHERE action = 'logout'",
+      "type": "UPDATE",
+      "table": "audit_logs"
+    }
+  ]
+}

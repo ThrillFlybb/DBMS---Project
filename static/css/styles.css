@@ -1,0 +1,17 @@
+main.container { padding-top: 1rem; }
+code { white-space: pre-wrap; }
+.pagination { display: flex; gap: .5rem; list-style: none; }
+.pagination li { display: inline-block; }
+table td code { white-space: pre-wrap; }
+.charts-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.charts-grid article { padding: .75rem; background: var(--card-background-color, #fff); border-radius: .5rem; }
+.charts-grid canvas { width: 100% !important; height: 260px !important; }
+@media (min-width: 1200px) {
+	.charts-grid canvas { height: 320px !important; }
+}
+.charts-grid--lg canvas { height: 360px !important; }
+@media (min-width: 1200px) {
+	.charts-grid--lg canvas { height: 420px !important; }
+}
+
+

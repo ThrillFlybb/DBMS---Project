@@ -1,0 +1,31 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 40px;
+  background-color: #f7f8fa;
+  color: #222;
+}
+h1, h2 { text-align: center; }
+.metrics {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+.card {
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  text-align: center;
+  width: 150px;
+}
+table {
+  margin: 0 auto;
+  border-collapse: collapse;
+  width: 80%;
+  text-align: center;
+}
+th, td {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+th { background-color: #eee; }

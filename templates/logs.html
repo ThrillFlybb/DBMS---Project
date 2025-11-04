@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Query Logs</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <h1>📜 Query Log Viewer</h1>
+  <table id="logsTable">
+    <thead><tr><th>Query</th><th>Execution Time (ms)</th><th>Timestamp</th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <script src="{{ url_for('static', filename='js/logs.js') }}"></script>
+</body>
+</html>

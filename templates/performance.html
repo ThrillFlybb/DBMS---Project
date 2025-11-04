@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Performance Comparison</h3>
+
+<div class="charts-grid charts-grid--lg">
+    <article>
+        <canvas id="latencyCompareChart"></canvas>
+    </article>
+    <article>
+        <canvas id="cdfChart"></canvas>
+    </article>
+    
+</div>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+	window.IndexUI.initPerformance();
+});
+</script>
+{% endblock %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Performance Comparison</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h1>📈 Performance Evaluation</h1>
+  <canvas id="performanceChart" width="600" height="300"></canvas>
+  <script src="{{ url_for('static', filename='js/performance.js') }}"></script>
+</body>
+</html>
