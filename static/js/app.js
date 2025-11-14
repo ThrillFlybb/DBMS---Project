@@ -2,7 +2,6 @@ window.IndexUI = (function () {
 	const api = {
 		metrics: '/api/metrics',
 		queries: '/api/queries',
-		benchmarks: '/api/benchmarks',
 		settings: '/api/settings'
 	};
 
@@ -117,68 +116,10 @@ window.IndexUI = (function () {
 		});
 		form.addEventListener('submit', (e) => { e.preventDefault(); page = 1; load(); });
 		load();
+		// Auto-refresh every 5 seconds
+		setInterval(load, 5000);
 	}
 
-    async function initPerformance() {
-        const latCtx = document.getElementById('latencyCompareChart').getContext('2d');
-        const cdfCtx = document.getElementById('cdfChart').getContext('2d');
-        let latChart = null;
-        let cdfChart = null;
-        function toCdf(arr) {
-            const s = [...(arr||[])].sort((a,b)=>a-b);
-            if (!s.length) return [];
-            return s.map((v,i)=>({ x: v, y: (i+1)/s.length }));
-        }
-        async function render() {
-            const data = await fetchJson(api.benchmarks);
-            const baseline = data.baseline.latencyMs || [];
-            const optimized = data.optimized.latencyMs || [];
-            const labels = Array.from({ length: Math.max(baseline.length, optimized.length) }, (_, i) => i + 1);
-            if (!latChart) {
-                latChart = new Chart(latCtx, {
-                    type: 'line',
-                    data: { labels, datasets: [
-                        { label: 'Baseline', data: baseline, borderColor: '#ef4444', fill: false, pointRadius: 0, borderWidth: 3 },
-                        { label: 'Optimized', data: optimized, borderColor: '#22c55e', fill: false, pointRadius: 0, borderWidth: 3 }
-                    ]},
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        animation: { duration: 600, easing: 'easeInOutCubic' },
-                        elements: { line: { tension: 0.3 } },
-                        plugins: { title: { display: true, text: 'Latency over time (ms)' } },
-                        scales: {
-                            x: { grid: { display: false }, title: { display: true, text: 'Samples (recent window)' } },
-                            y: { title: { display: true, text: 'Latency (ms)' } }
-                        }
-                    }
-                });
-            } else {
-                latChart.data.labels = labels;
-                latChart.data.datasets[0].data = baseline;
-                latChart.data.datasets[1].data = optimized;
-                latChart.update('active');
-            }
-            const baselineCdf = toCdf(baseline);
-            const optimizedCdf = toCdf(optimized);
-            if (!cdfChart) {
-                cdfChart = new Chart(cdfCtx, {
-                    type: 'line',
-                    data: { datasets: [
-                        { label: 'Baseline CDF', data: baselineCdf, parsing: false, borderColor: '#ef4444', showLine: true, pointRadius: 0 },
-                        { label: 'Optimized CDF', data: optimizedCdf, parsing: false, borderColor: '#22c55e', showLine: true, pointRadius: 0 }
-                    ]},
-                    options: { responsive: true, maintainAspectRatio: false, animation: { duration: 600, easing: 'easeInOutCubic' }, elements: { line: { tension: 0.0 } }, scales: { x: { type: 'linear', title: { text: 'Latency (ms)', display: true }, grid: { display: false } }, y: { title: { text: 'P', display: true }, min: 0, max: 1, grid: { color: 'rgba(0,0,0,0.08)' } } } }
-                });
-            } else {
-                cdfChart.data.datasets[0].data = baselineCdf;
-                cdfChart.data.datasets[1].data = optimizedCdf;
-                cdfChart.update('active');
-            }
-        }
-        render();
-        setInterval(render, 1000);
-    }
 
 	async function initSettings() {
 		const form = document.getElementById('settingsForm');
@@ -202,7 +143,7 @@ window.IndexUI = (function () {
 		});
 	}
 
-	return { initDashboard, initQueries, initPerformance, initSettings };
+	return { initDashboard, initQueries, initSettings };
 })();
 
 

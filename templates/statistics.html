@@ -19,17 +19,23 @@
             <canvas id="tableUsageChart"></canvas>
         </div>
         
-        <!-- Hourly Distribution Chart -->
+        <!-- Column Frequency Bar Chart -->
         <div class="chart-container">
-            <h3>Query Distribution by Hour</h3>
-            <canvas id="hourlyChart"></canvas>
+            <h3>Column Frequency (Count)</h3>
+            <canvas id="columnFreqBarChart"></canvas>
         </div>
         
-        <!-- Query Complexity Chart -->
+        <!-- Column Frequency Pie Chart -->
         <div class="chart-container">
-            <h3>Query Complexity Analysis</h3>
-            <canvas id="complexityChart"></canvas>
+            <h3>Column Frequency (Percentage)</h3>
+            <canvas id="columnFreqPieChart"></canvas>
         </div>
+    </div>
+    
+    <!-- Current Indexes -->
+    <div class="stats-summary">
+        <h3>Current Indexes</h3>
+        <div id="indexesList" class="indexes-list"></div>
     </div>
     
     <!-- Summary Statistics -->
@@ -48,17 +54,13 @@
                 <h4>Most Accessed Table</h4>
                 <span id="mostUsedTable" class="stat-text">-</span>
             </div>
-            <div class="stat-card">
-                <h4>Peak Hour</h4>
-                <span id="peakHour" class="stat-text">-</span>
-            </div>
         </div>
     </div>
     
-    <!-- Refresh Button -->
+    <!-- Auto-refresh indicator -->
     <div class="refresh-controls">
-        <button id="refreshStats" class="btn btn-primary">Refresh Statistics</button>
         <span class="last-updated">Last updated: <span id="lastUpdated">-</span></span>
+        <span class="auto-refresh-indicator">🔄 Auto-refreshing...</span>
     </div>
 </div>
 
@@ -134,20 +136,18 @@ function initCharts() {
         }
     });
     
-    // Hourly Distribution Chart (Line)
-    const hourlyCtx = document.getElementById('hourlyChart').getContext('2d');
-    charts.hourly = new Chart(hourlyCtx, {
-        type: 'line',
+    // Column Frequency Bar Chart
+    const columnFreqBarCtx = document.getElementById('columnFreqBarChart').getContext('2d');
+    charts.columnFreqBar = new Chart(columnFreqBarCtx, {
+        type: 'bar',
         data: {
             labels: [],
             datasets: [{
-                label: 'Queries per Hour',
+                label: 'Frequency',
                 data: [],
-                borderColor: colors.success,
-                backgroundColor: colors.success + '20',
-                borderWidth: 2,
-                fill: true,
-                tension: 0.4
+                backgroundColor: colors.success,
+                borderColor: colors.dark,
+                borderWidth: 1
             }]
         },
         options: {
@@ -156,29 +156,28 @@ function initCharts() {
             scales: {
                 y: {
                     beginAtZero: true
-                },
-                x: {
-                    title: {
-                        display: true,
-                        text: 'Hour of Day'
-                    }
                 }
             }
         }
     });
     
-    // Query Complexity Chart (Polar Area)
-    const complexityCtx = document.getElementById('complexityChart').getContext('2d');
-    charts.complexity = new Chart(complexityCtx, {
-        type: 'polarArea',
+    // Column Frequency Pie Chart
+    const columnFreqPieCtx = document.getElementById('columnFreqPieChart').getContext('2d');
+    charts.columnFreqPie = new Chart(columnFreqPieCtx, {
+        type: 'pie',
         data: {
-            labels: ['Simple', 'Medium', 'Complex'],
+            labels: [],
             datasets: [{
-                data: [0, 0, 0],
+                data: [],
                 backgroundColor: [
+                    colors.primary,
+                    colors.secondary,
                     colors.success,
                     colors.warning,
-                    colors.secondary
+                    colors.info,
+                    '#e67e22',
+                    '#1abc9c',
+                    '#95a5a6'
                 ],
                 borderWidth: 2,
                 borderColor: '#fff'
@@ -194,13 +193,18 @@ function initCharts() {
             }
         }
     });
+    
 }
 
 // Load statistics data
 async function loadStatistics() {
     try {
         const response = await fetch('/api/statistics');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
+        console.log('Statistics data received:', data);
         
         updateCharts(data);
         updateSummary(data);
@@ -208,6 +212,15 @@ async function loadStatistics() {
         
     } catch (error) {
         console.error('Error loading statistics:', error);
+        // Show error message to user
+        const errorMsg = document.createElement('div');
+        errorMsg.className = 'error-message';
+        errorMsg.textContent = 'Error loading statistics. Please check console for details.';
+        errorMsg.style.cssText = 'background: #f8d7da; color: #721c24; padding: 10px; border-radius: 4px; margin: 10px 0;';
+        const container = document.querySelector('.container');
+        if (container && !document.querySelector('.error-message')) {
+            container.insertBefore(errorMsg, container.firstChild);
+        }
     }
 }
 
@@ -215,33 +228,65 @@ async function loadStatistics() {
 function updateCharts(data) {
     // Update Query Types Chart
     const queryTypes = data.query_types || {};
-    charts.queryTypes.data.labels = Object.keys(queryTypes);
-    charts.queryTypes.data.datasets[0].data = Object.values(queryTypes);
-    charts.queryTypes.update();
+    if (Object.keys(queryTypes).length > 0) {
+        charts.queryTypes.data.labels = Object.keys(queryTypes);
+        charts.queryTypes.data.datasets[0].data = Object.values(queryTypes);
+        charts.queryTypes.update();
+    } else {
+        charts.queryTypes.data.labels = ['No Data'];
+        charts.queryTypes.data.datasets[0].data = [1];
+        charts.queryTypes.update();
+    }
     
     // Update Table Usage Chart
     const tableUsage = data.table_usage || {};
-    charts.tableUsage.data.labels = Object.keys(tableUsage);
-    charts.tableUsage.data.datasets[0].data = Object.values(tableUsage);
-    charts.tableUsage.update();
+    if (Object.keys(tableUsage).length > 0) {
+        charts.tableUsage.data.labels = Object.keys(tableUsage);
+        charts.tableUsage.data.datasets[0].data = Object.values(tableUsage);
+        charts.tableUsage.update();
+    } else {
+        charts.tableUsage.data.labels = ['No Data'];
+        charts.tableUsage.data.datasets[0].data = [0];
+        charts.tableUsage.update();
+    }
     
-    // Update Hourly Distribution Chart
-    const hourlyData = data.hourly_distribution || {};
-    const hours = Array.from({length: 24}, (_, i) => i);
-    const hourlyCounts = hours.map(hour => hourlyData[hour] || 0);
+    // Update Column Frequency Charts
+    const columnFreq = data.column_frequency || [];
+    if (columnFreq.length > 0) {
+        // Bar chart - show top 10
+        const topColumns = columnFreq.slice(0, 10);
+        charts.columnFreqBar.data.labels = topColumns.map(c => `${c.table}.${c.column}`);
+        charts.columnFreqBar.data.datasets[0].data = topColumns.map(c => c.frequency);
+        charts.columnFreqBar.update();
+        
+        // Pie chart - show top 8
+        const topForPie = columnFreq.slice(0, 8);
+        charts.columnFreqPie.data.labels = topForPie.map(c => `${c.table}.${c.column}`);
+        charts.columnFreqPie.data.datasets[0].data = topForPie.map(c => c.percent);
+        charts.columnFreqPie.update();
+    } else {
+        // Show placeholder when no data
+        charts.columnFreqBar.data.labels = ['No Data Yet'];
+        charts.columnFreqBar.data.datasets[0].data = [0];
+        charts.columnFreqBar.update();
+        
+        charts.columnFreqPie.data.labels = ['No Data Yet'];
+        charts.columnFreqPie.data.datasets[0].data = [100];
+        charts.columnFreqPie.update();
+    }
     
-    charts.hourly.data.labels = hours.map(h => h + ':00');
-    charts.hourly.data.datasets[0].data = hourlyCounts;
-    charts.hourly.update();
-    
-    // Update Query Complexity Chart
-    const complexity = data.query_complexity || {};
-    charts.complexity.data.datasets[0].data = [
-        complexity.simple || 0,
-        complexity.medium || 0,
-        complexity.complex || 0
-    ];
-    charts.complexity.update();
+    // Update Current Indexes
+    const indexes = data.current_indexes || [];
+    const indexesList = document.getElementById('indexesList');
+    if (indexes.length > 0) {
+        indexesList.innerHTML = indexes.map(idx => `
+            <div class="index-item">
+                <strong>${idx.name}</strong> on <code>${idx.table}</code>
+            </div>
+        `).join('');
+    } else {
+        indexesList.innerHTML = '<p>No indexes currently active.</p>';
+    }
 }
 
 // Update summary statistics
@@ -259,12 +304,6 @@ function updateSummary(data) {
     const mostUsedTable = Object.keys(tableUsage).reduce((a, b) => 
         tableUsage[a] > tableUsage[b] ? a : b, '-');
     document.getElementById('mostUsedTable').textContent = mostUsedTable;
-    
-    // Peak hour
-    const hourlyData = data.hourly_distribution || {};
-    const peakHour = Object.keys(hourlyData).reduce((a, b) => 
-        hourlyData[a] > hourlyData[b] ? a : b, '-');
-    document.getElementById('peakHour').textContent = peakHour !== '-' ? peakHour + ':00' : '-';
 }
 
 // Update last updated timestamp
@@ -273,16 +312,13 @@ function updateLastUpdated() {
     document.getElementById('lastUpdated').textContent = now.toLocaleTimeString();
 }
 
-// Event listeners
-document.getElementById('refreshStats').addEventListener('click', loadStatistics);
-
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
     initCharts();
     loadStatistics();
     
-    // Auto-refresh every 30 seconds
-    setInterval(loadStatistics, 30000);
+    // Auto-refresh every 2 seconds for real-time updates
+    setInterval(loadStatistics, 2000);
 });
 </script>
 
@@ -357,6 +393,7 @@ document.addEventListener('DOMContentLoaded', function() {
 .refresh-controls {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 15px;
     background: white;
     border-radius: 8px;
@@ -369,25 +406,48 @@ document.addEventListener('DOMContentLoaded', function() {
     font-size: 0.9em;
 }
 
-.btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+.auto-refresh-indicator {
+    color: #2ecc71;
+    font-size: 0.85em;
+    font-weight: 500;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.6;
+    }
+}
+
+.indexes-list {
+    margin-top: 15px;
+}
+
+.index-item {
+    background: #f8f9fa;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-left: 3px solid #3498db;
+}
+
+.index-item strong {
+    color: #333;
+}
+
+.index-item code {
+    background: #e9ecef;
+    padding: 2px 6px;
+    border-radius: 3px;
     font-size: 0.9em;
-    transition: background-color 0.3s;
-}
-
-.btn-primary {
-    background-color: #3498db;
-    color: white;
-}
-
-.btn-primary:hover {
-    background-color: #2980b9;
 }
 </style>
 {% endblock %}
+
+
 
 
 

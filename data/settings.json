@@ -6,5 +6,6 @@
     "database": "app"
   },
   "refreshIntervalMs": 5000,
-  "dataSource": "json"
+  "dataSource": "json",
+  "backendBaseUrl": ""
 }
