@@ -1,1 +1,0 @@
-(1, "SELECT * FROM users WHERE name = 'Pranav'", '2025-11-12 20:25:42')
