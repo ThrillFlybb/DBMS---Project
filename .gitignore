@@ -54,12 +54,6 @@ Thumbs.db
 htmlcov/
 coverage.xml
 
-# Generated assets
-metrics.json
-status.json
-status.txt
-frequency.json
-
 # SQLite write-ahead logs
 *.sqlite-wal
 *.sqlite-shm
@@ -68,4 +62,5 @@ frequency.json
 generator_status.txt
 auto_index*
 query_log.txt
-data/
+metrics.json
+settings.json

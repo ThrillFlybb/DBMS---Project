@@ -22,7 +22,7 @@ The project serves as a **Database Performance Monitoring and Optimization Dashb
 
 ### Technology Stack
 - **Backend**: Flask (Python web framework)
-- **Frontend**: HTML5, JavaScript (Vanilla), Chart.js for visualizations
+- **Frontend**: HTML5, JavaScript, Chart.js for visualizations
 - **Styling**: Pico CSS framework
 - **Data Storage**: JSON files (simulated database)
 - **Real-time Updates**: Threading-based simulator with 1-second intervals
@@ -115,7 +115,7 @@ The project serves as a **Database Performance Monitoring and Optimization Dashb
 - `waitress==3.0.0`: Production WSGI server
 - `requests==2.32.3`: HTTP library for REST API integration
 
-#### 3. **`start_with_tunnel.bat`** (90 lines) - Windows Startup Script
+#### 3. **`run.bat`** (90 lines) - Windows Startup Script
 **Purpose**: Automated startup script for Windows that sets up environment and creates public tunnel
 
 **Features**:
@@ -130,18 +130,7 @@ The project serves as a **Database Performance Monitoring and Optimization Dashb
 
 ### Data Directory (`data/`)
 
-#### 1. **`benchmarks.json`** - Performance Benchmarks
-**Purpose**: Stores baseline vs optimized latency comparisons
-**Structure**:
-```json
-{
-  "baseline": {"latencyMs": [array of latency values]},
-  "optimized": {"latencyMs": [array of latency values]}
-}
-```
-**Why**: Used for performance comparison visualization
-
-#### 2. **`metrics.json`** - Real-time Metrics
+#### 1. **`metrics.json`** - Real-time Metrics
 **Purpose**: Stores current system metrics
 **Structure**:
 ```json
@@ -159,35 +148,7 @@ The project serves as a **Database Performance Monitoring and Optimization Dashb
 ```
 **Why**: Provides data for dashboard charts (60-point sliding window)
 
-#### 3. **`queries.json`** - Query Logs
-**Purpose**: Stores generated query logs
-**Structure**:
-```json
-{
-  "items": [
-    {
-      "timestamp": "ISO timestamp",
-      "latencyMs": number,
-      "database": "app|analytics|payments",
-      "sql": "SQL query string",
-      "type": "SELECT|INSERT|UPDATE|DELETE",
-      "table": "table name"
-    }
-  ]
-}
-```
-**Why**: Used for query log viewer and statistics (stores last 200 queries)
-
-#### 4. **`query_logs.json`** - Legacy Query Logs (Optional)
-**Purpose**: Alternative format for query logs (legacy)
-**Structure**: Array of query objects
-**Why**: May be used by other components or for migration
-
-#### 5. **`recommendations.json`** - Optimization Recommendations
-**Purpose**: Stores index optimization recommendations (if implemented)
-**Why**: Would contain suggested indexes based on query patterns
-
-#### 6. **`settings.json`** - Application Settings
+#### 2. **`settings.json`** - Application Settings
 **Purpose**: Stores user configuration
 **Structure**:
 ```json
