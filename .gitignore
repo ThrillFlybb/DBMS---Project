@@ -68,4 +68,4 @@ frequency.json
 generator_status.txt
 auto_index*
 query_log.txt
-
+data/
