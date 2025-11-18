@@ -1,4 +1,0 @@
-[
-  {"query": "SELECT * FROM users WHERE email='test@example.com'", "time_ms": 12, "timestamp": "2025-10-07 22:30:01"},
-  {"query": "UPDATE orders SET status='shipped' WHERE id=45", "time_ms": 19, "timestamp": "2025-10-07 22:30:10"}
-]

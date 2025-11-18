@@ -5,7 +5,7 @@
     "user": "admin",
     "database": "app"
   },
-  "refreshIntervalMs": 5000,
+  "refreshIntervalMs": 4000,
   "dataSource": "json",
   "backendBaseUrl": ""
 }
