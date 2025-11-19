@@ -416,19 +416,16 @@ The project serves as a **Database Performance Monitoring and Optimization Dashb
 
 ### Method 1: Using Batch Script (Windows)
 ```bash
-start_with_tunnel.bat
+run.bat
 ```
 - Automatically sets up environment
 - Creates public tunnel via Cloudflared
 - Opens browser automatically
 
-### Method 2: Using PowerShell Script
-```powershell
-.\scripts\start.ps1
+### Method 2: Using Shell Script (Linux/ MacOS)
+```bash
+run.sh
 ```
-- Sets up virtual environment
-- Installs dependencies
-- Starts Flask server
 
 ### Method 3: Manual Start
 ```bash
