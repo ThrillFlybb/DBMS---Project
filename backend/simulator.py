@@ -1,6 +1,7 @@
 import threading
 import time
 import random
+import os
 from collections import deque
 from datetime import datetime, timezone
 
@@ -19,83 +20,74 @@ class MetricsSimulator:
         self.cpu = deque(maxlen=self.window)
         self.mem = deque(maxlen=self.window)
         self.storage = deque(maxlen=self.window)
-        self.storage_base = 1.0
-
+        
         self.db_manager = db_manager
         self.query_generator = query_generator
+        
+        # Track query count for QPS calculation
+        self.query_count = 0
+        self.last_qps_time = time.time()
+        self.query_times = deque(maxlen=100)  # Track last 100 query timestamps
+        
+        # Get current process for CPU/Memory tracking
+        self.current_process = None
+        if psutil:
+            try:
+                self.current_process = psutil.Process(os.getpid())
+            except Exception:
+                pass
 
         self._seed()
 
     def _seed(self):
+        """Initialize with current database metrics"""
+        db_size = self.db_manager.get_database_size()
+        avg_latency = self.db_manager.get_average_latency() or 10.0
+        
         for i in range(self.window):
             self.labels.append(f"t-{self.window - i}")
-            base_qps = 150 + random.randint(-15, 15)
-            self.qps.append(base_qps)
-            self.latency.append(
-                max(8, 35 - (base_qps - 120) * 0.08 + random.random() * 2)
-            )
-            cpu_base = psutil.cpu_percent() if psutil else 35
-            mem_base = psutil.virtual_memory().percent if psutil else 50
-            self.cpu.append(min(95, max(5, cpu_base + random.randint(-3, 3))))
-            self.mem.append(min(95, max(5, mem_base + random.randint(-1, 1))))
-            self.storage.append(self.storage_base + i * 0.02)
+            self.qps.append(0)  # Will be calculated from actual queries
+            self.latency.append(avg_latency)
+            
+            # Get process CPU/Memory if available
+            if self.current_process:
+                try:
+                    cpu_val = self.current_process.cpu_percent(interval=0.1) or 0
+                    mem_info = self.current_process.memory_info()
+                    mem_val = (mem_info.rss / (1024 ** 3)) * 100  # Convert to GB then percentage (rough estimate)
+                except Exception:
+                    cpu_val = 0
+                    mem_val = 0
+            else:
+                cpu_val = 0
+                mem_val = 0
+            
+            self.cpu.append(max(0, min(100, cpu_val)))
+            self.mem.append(max(0, min(100, mem_val)))
+            self.storage.append(db_size)
 
     def tick(self):
         with self.lock:
-            # metrics
-            last_qps = self.qps[-1] if self.qps else 150
-            qps_val = max(80, min(240, last_qps + random.randint(-6, 6)))
-            lat_val = max(6, 40 - (qps_val - 100) * 0.09 + random.random() * 2)
-
-            cpu_base = (
-                psutil.cpu_percent()
-                if psutil
-                else (self.cpu[-1] if self.cpu else 40)
-            )
-            mem_base = (
-                psutil.virtual_memory().percent
-                if psutil
-                else (self.mem[-1] if self.mem else 52)
-            )
-
-            cpu_val = min(98, max(5, cpu_base + random.randint(-2, 3)))
-            mem_val = min(98, max(5, mem_base + random.randint(-1, 1)))
-            stor_val = (
-                self.storage[-1] if self.storage else self.storage_base
-            ) + (0.00 if random.random() < 0.6 else 0.02)
-
             now_utc = datetime.now(timezone.utc)
-            self.labels.append(now_utc.strftime('%H:%M:%S'))
-            self.qps.append(round(qps_val, 2))
-            self.latency.append(round(lat_val, 2))
-            self.cpu.append(round(cpu_val, 2))
-            self.mem.append(round(mem_val, 2))
-            self.storage.append(round(stor_val, 2))
-
-            # write metrics.json
-            write_json(
-                'metrics.json',
-                {
-                    "timestamp": now_utc.isoformat(),
-                    "series": {
-                        "labels": list(self.labels),
-                        "qps": list(self.qps),
-                        "latencyMs": list(self.latency),
-                        "cpu": list(self.cpu),
-                        "memory": list(self.mem),
-                        "storageGb": list(self.storage),
-                    },
-                },
-            )
-
+            current_time = time.time()
+            
             # query generation & execution
+            query_executed = False
+            query_latency = 0.0
+            
             try:
                 sql, params = self.query_generator.generate()
                 timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-                # Execute in DB
+                # Execute in DB and get actual execution time
                 try:
-                    self.db_manager.execute(sql, params or ())
+                    result, exec_time_ms = self.db_manager.execute(sql, params or ())
+                    query_executed = True
+                    query_latency = exec_time_ms
+                    
+                    # Track query time for QPS calculation
+                    self.query_times.append(current_time)
+                    self.query_count += 1
                 except Exception:
                     pass
 
@@ -113,10 +105,68 @@ class MetricsSimulator:
 
                 # Update status file
                 with open(STATUS_FILE, "w") as f:
-                    f.write(str(time.time()))
+                    f.write(str(current_time))
 
             except Exception:
                 pass
+
+            # Calculate QPS from recent queries (last second)
+            time_window = 1.0  # 1 second window
+            recent_queries = [t for t in self.query_times if current_time - t <= time_window]
+            qps_val = len(recent_queries)
+            
+            # Get actual latency from database manager
+            avg_latency = self.db_manager.get_average_latency()
+            if avg_latency > 0:
+                lat_val = avg_latency
+            elif query_latency > 0:
+                lat_val = query_latency
+            else:
+                # Fallback to last known latency
+                lat_val = self.latency[-1] if self.latency else 10.0
+
+            # Get system-wide CPU and Memory usage (not just process)
+            if psutil:
+                try:
+                    # CPU: system-wide CPU usage percentage
+                    cpu_val = psutil.cpu_percent(interval=0.1) or 0
+                    # Memory: system-wide memory usage percentage
+                    system_mem = psutil.virtual_memory()
+                    mem_val = system_mem.percent
+                except Exception:
+                    cpu_val = self.cpu[-1] if self.cpu else 0
+                    mem_val = self.mem[-1] if self.mem else 0
+            else:
+                cpu_val = self.cpu[-1] if self.cpu else 0
+                mem_val = self.mem[-1] if self.mem else 0
+
+            # Get actual database file size
+            db_size = self.db_manager.get_database_size()
+            stor_val = db_size if db_size > 0 else (self.storage[-1] if self.storage else 0.0)
+
+            # Update metrics
+            self.labels.append(now_utc.strftime('%H:%M:%S'))
+            self.qps.append(round(qps_val, 2))
+            self.latency.append(round(lat_val, 2))
+            self.cpu.append(round(max(0, min(100, cpu_val)), 2))
+            self.mem.append(round(max(0, min(100, mem_val)), 2))
+            self.storage.append(round(stor_val, 4))  # More precision for storage
+
+            # write metrics.json
+            write_json(
+                'metrics.json',
+                {
+                    "timestamp": now_utc.isoformat(),
+                    "series": {
+                        "labels": list(self.labels),
+                        "qps": list(self.qps),
+                        "latencyMs": list(self.latency),
+                        "cpu": list(self.cpu),
+                        "memory": list(self.mem),
+                        "storageGb": list(self.storage),
+                    },
+                },
+            )
 
 
 # Singletons

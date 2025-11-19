@@ -1,5 +1,6 @@
 import sqlite3
 import time
+import os
 
 from backend.config import DB_PATH
 from backend.query_generator import extract_columns, extract_table
@@ -12,6 +13,9 @@ class DBManager:
         self._conn.execute("PRAGMA journal_mode=WAL;")
         self._conn.execute("PRAGMA synchronous=OFF;")
         self.init_schema()
+        # Track recent query latencies
+        self.recent_latencies = []
+        self.max_latency_history = 100
 
     def init_schema(self):
         cur = self._conn.cursor()
@@ -49,21 +53,57 @@ class DBManager:
         self._conn.commit()
 
     def execute(self, sql: str, params=None, retries: int = 3, delay: float = 0.05):
-        """Execute a query with basic retry on 'database is locked'."""
+        """Execute a query with basic retry on 'database is locked'. Returns (cursor, execution_time_ms)."""
         if params is None:
             params = ()
+        start_time = time.perf_counter()
         for attempt in range(retries):
             try:
                 cur = self._conn.cursor()
                 cur.execute(sql, params)
                 # we always commit; this is a write-heavy simulator
                 self._conn.commit()
-                return cur
+                # Calculate execution time
+                execution_time_ms = (time.perf_counter() - start_time) * 1000
+                # Track latency (only for successful queries)
+                self.recent_latencies.append(execution_time_ms)
+                if len(self.recent_latencies) > self.max_latency_history:
+                    self.recent_latencies.pop(0)
+                return cur, execution_time_ms
             except sqlite3.OperationalError as e:
                 if "locked" in str(e).lower() and attempt < retries - 1:
                     time.sleep(delay * (attempt + 1))
                     continue
+                # If all retries failed, record the time but don't track latency
+                execution_time_ms = (time.perf_counter() - start_time) * 1000
                 raise
+            except Exception:
+                # For other exceptions, record time but don't track latency
+                execution_time_ms = (time.perf_counter() - start_time) * 1000
+                raise
+
+    def get_average_latency(self):
+        """Get average latency from recent queries in ms."""
+        if not self.recent_latencies:
+            return 0.0
+        return sum(self.recent_latencies) / len(self.recent_latencies)
+
+    def get_database_size(self):
+        """Get database file size in GB."""
+        try:
+            if os.path.exists(self.db_path):
+                size_bytes = os.path.getsize(self.db_path)
+                # Also check for WAL and SHM files
+                wal_path = self.db_path + '-wal'
+                shm_path = self.db_path + '-shm'
+                if os.path.exists(wal_path):
+                    size_bytes += os.path.getsize(wal_path)
+                if os.path.exists(shm_path):
+                    size_bytes += os.path.getsize(shm_path)
+                return size_bytes / (1024 ** 3)  # Convert to GB
+            return 0.0
+        except Exception:
+            return 0.0
 
     def update_frequency_counter(self, sql: str):
         """Update frequency counter for columns in SQL"""

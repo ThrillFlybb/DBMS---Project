@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<h3>Real-time Metrics Dashboard</h3>
+<h3>Real-time Database Metrics Dashboard</h3>
 
 <div class="charts-grid">
 	<article>
@@ -8,19 +8,19 @@
 		<canvas id="qpsChart"></canvas>
 	</article>
 	<article>
-		<h4>Latency (ms)</h4>
+		<h4>Query Latency (ms)</h4>
 		<canvas id="latencyChart"></canvas>
 	</article>
 	<article>
-		<h4>CPU (%)</h4>
+		<h4>System CPU (%)</h4>
 		<canvas id="cpuChart"></canvas>
 	</article>
 	<article>
-		<h4>Memory (%)</h4>
+		<h4>System Memory (%)</h4>
 		<canvas id="memoryChart"></canvas>
 	</article>
 	<article>
-		<h4>Storage (GB)</h4>
+		<h4>Database Storage (GB)</h4>
 		<canvas id="storageChart"></canvas>
 	</article>
 </div>
